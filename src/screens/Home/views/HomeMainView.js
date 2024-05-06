@@ -33,13 +33,11 @@ const HomeMainView = (props) => {
         programs,
         saveLessons,
         allLessons,
-        allPrograms,
         // data,
-
+        
     } = props;
 
     console.log("FETCH DATA LESSONS REDUX IN MAINVIEW: ", allLessons);
-    console.log("FETCH DATA PROGRAMS REDUX IN MAINVIEW: ", allPrograms);
 
 
     const propsHeader = {
