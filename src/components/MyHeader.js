@@ -9,11 +9,11 @@ const MyHeader = (props) => {
 
     } = props;
 
-    return (
+    return(
         <View style={styles.container}>
-            <Text style={styles.text}>FORDANCE</Text>
+            <Text style={styles.text}>FORMUSIC</Text>
             <TouchableOpacity>
-                <Ionicons name="notifications-outline" size={27} />
+                <Ionicons name="notifications-outline" size={27}/>
             </TouchableOpacity>
         </View>
     )
