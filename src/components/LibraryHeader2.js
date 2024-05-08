@@ -1,8 +1,8 @@
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
+const { View, Text, TouchableOpacity, StyleSheet } = require("react-native");
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Colors from "../values/colors";
 
-const LibraryHeader = (props) => {
+
+const LibraryHeader2 = (props) => {
     const {
 
     } = props;
@@ -10,66 +10,46 @@ const LibraryHeader = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
-                <Text style={styles.text}>LOGO</Text>
+                <Text style={styles.text}>FORDANCE</Text>
                 <View style={styles.iconContainer}>
                     <TouchableOpacity style={{ marginRight: 15 }} >
-                        <Ionicons name="notifications-outline" size={27} />
+                        <Ionicons name="filter-outline" size={27} color='black'/>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Ionicons name="search-outline" size={27} />
+                        <Ionicons name="search-outline" size={27} color='black'/>
                     </TouchableOpacity>
                 </View>
-            </View>
-            <View style={styles.pageContainer}>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>Classes</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>Programs</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>Categories</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>Instructors</Text>
-                        </TouchableOpacity>
-                    </View>
-                </ScrollView>
             </View>
         </View>
     )
 }
 
-export default LibraryHeader;
+export default LibraryHeader2;
 
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: 120,
+        height: 70,
         backgroundColor: 'white',
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 16,
+        paddingTop: 32,
+        paddingBottom: 8,
         borderColor: 'grey',
-        shadowColor: '#000000',
-        shadowOffset: {
-            width: 0,
-            height: 0
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        elevation: 4,
+        
     },
 
     logoContainer: {
         width: '100%',
+        height: 'auto',
         flex: 2,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        // backgroundColor: 'orange',
+
     },
     pageContainer: {
         flex: 1,
