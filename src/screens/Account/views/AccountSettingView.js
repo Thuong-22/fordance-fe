@@ -11,7 +11,6 @@ const AccountSettingView = (props) => {
 
     const handleNavAccountSetting = () => {
         navigation.navigate('SubView');
-
     }
 
     const handleNavDancePreference = () => {
@@ -26,15 +25,10 @@ const AccountSettingView = (props) => {
         navigation.navigate('Introduce');
     }
 
-    const handleNavLogout = () => {
-        navigation.navigate('Login');
-    }
-
     const classJoined = 8;
     const lessonCompleted = 10;
 
     return (
-
         <SafeAreaView style={styles.container}>
             <View style={styles.touchContainer}>
                 <Text style={styles.textHeader}>Account Setting</Text>
@@ -68,7 +62,7 @@ const AccountSettingView = (props) => {
                         </View>
                         <Ionicons name="chevron-forward-outline" size={20} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.touchItem} onPress={handleNavLogout}>
+                    <TouchableOpacity style={styles.touchItem}>
                         <View>
                             <Text style={styles.bottomText}>Log out</Text>
                         </View>
