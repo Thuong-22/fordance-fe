@@ -34,6 +34,7 @@ const AccountSettingView = (props) => {
     const lessonCompleted = 10;
 
     return (
+
         <SafeAreaView style={styles.container}>
             <View style={styles.touchContainer}>
                 <Text style={styles.textHeader}>Account Setting</Text>
