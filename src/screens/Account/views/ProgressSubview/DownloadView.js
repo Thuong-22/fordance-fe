@@ -178,6 +178,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    overlayTouchable: {
+        ...StyleSheet.absoluteFillObject,
+    },
     modalContainer: {
         position: 'absolute',
         bottom: 0,

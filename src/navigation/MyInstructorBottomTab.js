@@ -7,7 +7,6 @@ import InstructorManage from "../screens/InstructorManage";
 import InstructorAccount from "../screens/InstructorAccount";
 import InstructorSchedule from '../screens/InstructorSchedule';
 import InstructorSettingStack from './InstructorSettingStack';
-import InstructorManageStack from './InstructorManageStack';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -15,8 +14,8 @@ function MyInstructorBottomTab() {
     return (
         <BottomTab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false }}>
             <BottomTab.Screen
-                name="InstructorManageStack"
-                component={InstructorManageStack}
+                name="InstructorManage"
+                component={InstructorManage}
                 options={({ route }) => ({
                     tabBarIcon: ({ focused }) => (
                         <Ionicons name="home-outline" size={24} color={focused ? Colors.primaryPupple : 'black'} />
