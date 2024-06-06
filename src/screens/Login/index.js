@@ -1,18 +1,18 @@
-const { default: LoginContainer } = require("./LoginContainer");
+const { default: LoginContainer } = require("./LoginContainer")
 
 const Login = (props) => {
     const {
         navigation,
-        selectedRole,
+        onSelectRole,
 
     } = props;
 
-    const propsContainer = {
+    const propsCongtainer = {
         navigation,
-        selectedRole,
-    }
+        onSelectRole
+    };
 
-    return <LoginContainer{...propsContainer}/>
+    return <LoginContainer{...propsCongtainer}/>
 }
 
-export default Login
+export default Login;

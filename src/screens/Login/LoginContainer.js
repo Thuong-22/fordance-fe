@@ -3,16 +3,16 @@ const { default: LoginMainView } = require("./views/LoginMainView");
 const LoginContainer = (props) => {
     const {
         navigation,
-        selectedRole,
+        onSelectRole,
 
     } = props;
 
-    const propsMainView = {
+    const propsLogin = {
         navigation,
-        selectedRole,
+        onSelectRole
     }
 
-    return <LoginMainView{...props}/>
+    return <LoginMainView{...propsLogin}/>
 }
 
-export default LoginContainer
+export default LoginContainer;
