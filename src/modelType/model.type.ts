@@ -68,6 +68,7 @@ type LessonType = {
     level: String;
     category: String;
     total_time: String;
+    image_link: String;
     video_URL: String;
     instructor: InstructorType;
     community: CommunityType;
@@ -78,9 +79,13 @@ type LessonType = {
 type ProgramType = {
     name: String;
     introduce: String;
+    learn_what: String;
+    need_what: String;
     level: String;
     category: String;
     total_time: String;
+    lessons_amount: Number;
+    image_link: String;
     lessons: LessonType[];
     instructor: InstructorType;
 }
