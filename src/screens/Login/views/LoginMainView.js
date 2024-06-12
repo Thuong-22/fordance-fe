@@ -21,9 +21,6 @@ const LoginMainView = (props) => {
     const handleNavSignUp = () => {
         navigation.navigate('SignUp');
     }
-    const handleNavSelectRole = () => {
-        navigation.navigate('ChoseRole');
-    }
 
     return(
         <KeyboardAvoidingView style={styles.container}>
@@ -57,20 +54,13 @@ const LoginMainView = (props) => {
                 </View>
 
                 <TouchableOpacity style={styles.buttonSignIn} onPress={() => handleSignIn(email, password)}>
-                    <Text style={styles.textSignIn}>Log In</Text>
+                    <Text style={styles.textSignIn}>Sign In</Text>
                 </TouchableOpacity>
 
                 <View style={styles.signUpContainer}>
                     <Text>Does not have an account? </Text>
                     <TouchableOpacity onPress={handleNavSignUp}>
                         <Text style={styles.textSignUp}>Sign Up</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.selectRoleContainer}>
-                    <Text>Go back to select role account? </Text>
-                    <TouchableOpacity onPress={handleNavSelectRole}>
-                        <Text style={styles.textSignUp}>Select Role</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -92,28 +82,22 @@ const styles = StyleSheet.create({
     signUpContainer: {
         flexDirection: 'row'
     },
-    selectRoleContainer: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
     textLogin: {
         fontSize: 24,
-        fontWeight: '700',
+        fontWeight: 'bold',
         marginBottom: 24,
-        textTransform: 'capitalize',
-        // color: 'black'
+        textTransform: 'capitalize'
     },
     formContainer: {
 
     },
     inputContainer: {
         marginBottom: 12,
-        // backgroundColor: 'pink'
+        backgroundColor: 'pink'
     },
     input: {
         height: 40,
         width: Dimensions.get('window').width*0.80,
-        borderRadius: 20,
         borderColor: 'gray',
         borderWidth: 1,
         paddingHorizontal: 12,
@@ -121,8 +105,7 @@ const styles = StyleSheet.create({
     buttonSignIn: {
         backgroundColor: Colors.primaryPupple,
         width: Dimensions.get("window").width * 0.8,
-        borderRadius: 24,
-        height: 44,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'center'
     },

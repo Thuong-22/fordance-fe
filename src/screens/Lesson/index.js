@@ -9,19 +9,17 @@ const Lesson = (props) => {
         navigation,
         route
         //dispatch,
-        
+
     } = props;
 
-    const {isOwner} = route.params;
-
-    console.log("IS LESSON OWNER IN INDEX: ", isOwner);
+    const { lesson } = route.params;
 
     const propsContainer = {
         navigation,
-        isOwner
+        lesson
     };
 
-    return <LessonContainer{...propsContainer}/>
+    return <LessonContainer{...propsContainer} />
 }
 
 export default Lesson;

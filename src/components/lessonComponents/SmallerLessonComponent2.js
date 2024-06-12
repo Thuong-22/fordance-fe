@@ -3,20 +3,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import InstructorLessonMoreComponent from './InstructorLessonMoreComponent';
 import { useState } from 'react';
 
-// type LessonType = {
-//     name: String;
-//     introduce: String;
-//     level: String;
-//     category: String;
-//     total_time: String;
-//     image_link: String;
-//     video_URL: String;
-//     instructor: InstructorType;
-//     community: CommunityType;
-//     offline_lesson: OfflineLessonType;
-
-// }
-
 const SmallerLessonComponent2 = (props) => {
     const {
         lesson,
@@ -39,10 +25,10 @@ const SmallerLessonComponent2 = (props) => {
     return (
         <TouchableOpacity style={styles.container} onPress={handleNav}>
             <View style={styles.firstContainer}>
-                <Image style={styles.image} source={{ uri: lesson.image_link }} />
+                <Image style={styles.image} source={{ uri: lesson.lessonImage }} />
                 <View style={styles.textContentContainer}>
-                    <Text numberOfLines={2} ellipsizeMode='tail' style={styles.textLessonName}>{lesson.name}</Text>
-                    <Text style={styles.textTime}>{lesson.total_time}</Text>
+                    <Text numberOfLines={2} ellipsizeMode='tail' style={styles.textLessonName}>{lesson.lessonName}</Text>
+                    <Text style={styles.textTime}>{lesson.totalTime}</Text>
                 </View>
             </View>
             <TouchableOpacity style={styles.secondContainer} onPress={onPressOpenMoreAction}>

@@ -12,11 +12,11 @@ const Lesson2Component = (props) => {
         <View>
             <View style={styles.container1}>
                 <ImageBackground
-                    source={{ uri: lessons.image_link }}
+                    source={{ uri: lessons.image }}
                     style={styles.background}
                 >
                     <View style={styles.contentContainer}>
-                        <Text style={styles.textName}>{lessons.name}</Text>
+                        <Text style={styles.textName}>{lessons.lessonName}</Text>
                         <TouchableOpacity
                             onPress={handleNav}
                         >
@@ -39,7 +39,7 @@ const Lesson2Component = (props) => {
             </View>
 
             <View style={styles.container3}>
-                <Text style={styles.textTime}>{lessons.total_time} minutes</Text>
+                <Text style={styles.textTime}>{lessons.timeDuring} minutes</Text>
             </View>
         </View>
     )
