@@ -10,7 +10,6 @@ import Colors from "../../../values/colors";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SmallerLessonComponent from "../../../components/SmallerLessonComponent";
 import Search from "../../Search";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 
 const scheduleFor = "Schedule for: ";
@@ -34,7 +33,7 @@ const ScheduleMainView = (props) => {
     }
 
     const handleNavDetailLesson = () => {
-        navigation.navigate('Lesson', {isOwner: false})
+        navigation.navigate('Lesson')
     }
 
     const handleNavSearch = () => {
@@ -70,7 +69,6 @@ const ScheduleMainView = (props) => {
                                 <SmallerLessonComponent
                                 lesson={item}
                                 index={index+1}
-                                isOwner={false}
                                 handleNav={() => handleNavDetailLesson()}
                                 />
                                 <TouchableOpacity>

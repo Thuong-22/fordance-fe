@@ -50,7 +50,7 @@ const HomeMainView = (props) => {
     };
 
     const handleNavDetailLesson = () => {
-        navigation.navigate('Lesson', {isOwner: false});
+        navigation.navigate('Lesson');
     }
 
     const handleNavDetailProgram = (

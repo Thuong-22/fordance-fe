@@ -26,7 +26,7 @@ const LibraryMainView = (props) => {
 
 
     const handleNavDetailLesson = () => {
-        navigation.navigate('Lesson', { tabBarVisible: false, isOwner: false });
+        navigation.navigate('Lesson', { tabBarVisible: false });
     }
 
     const handleNavDetailProgram = (
@@ -44,7 +44,7 @@ const LibraryMainView = (props) => {
     }
 
     const handleNavFilter = () => {
-        navigation.navigate('Filter');
+        navigation.navigate('FilterScreen');
     }
 
     const [content, setContent] = useState("Lessons"); // State để xác định nội dung hiện tại
