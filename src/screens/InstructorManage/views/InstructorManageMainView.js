@@ -42,14 +42,14 @@ const InstructorManageMainView = (props) => {
     // }
 
     const handleNavDetailLesson = () => {
-        navigation.navigate('Lesson', { tabBarVisible: false, isOwner: true });
+        navigation.navigate('Lesson', { tabBarVisible: false });
     }
 
-    const handleNavDetailInstructorProgram = (
+    const handleNavDetailProgram = (
         programData
     ) => {
         // console.log("PROGRAM DATA AFTER PROPS FROM LIBRARY MAIN VIEW: ", programData);
-        navigation.navigate('InstructorProgram', {
+        navigation.navigate('Program', {
             tabBarVisible: false,
             program: programData
         });
@@ -107,7 +107,7 @@ const InstructorManageMainView = (props) => {
                                     <View key={index} style={{ marginBottom: 24, width: '100%' }}>
                                         <WiderProgramComponent
                                             program={item}
-                                            handleNav={() => handleNavDetailInstructorProgram(
+                                            handleNav={() => handleNavDetailProgram(
                                                 programData = item
                                             )}
                                         />

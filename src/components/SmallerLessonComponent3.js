@@ -1,9 +1,8 @@
-const { Vibration, View, StyleSheet, Text, Image, TouchableOpacity } = require("react-native")
+const { View, StyleSheet, Text, Image, TouchableOpacity } = require("react-native")
 
-const SmallerLessonComponent = (props) => {
+const SmallerLessonComponent3 = (props) => {
     const {
         lesson,
-        index,
         handleNav
     } = props;
 
@@ -11,7 +10,6 @@ const SmallerLessonComponent = (props) => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={handleNav}>
-            <Text style={styles.textIndex}>{index}</Text>
             <Image style={styles.image} source={{ uri: lesson.lessonImage }} />
             <View>
                 <Text style={styles.textLessonName}>{lesson.lessonName}</Text>
@@ -20,7 +18,7 @@ const SmallerLessonComponent = (props) => {
         </TouchableOpacity>
     )
 }
-export default SmallerLessonComponent;
+export default SmallerLessonComponent3;
 
 const styles = StyleSheet.create({
     container: {
@@ -28,15 +26,6 @@ const styles = StyleSheet.create({
         height: 80,
         flexDirection: 'row',
         alignItems: 'center',
-        // justifyContent: ''
-
-        // backgroundColor: 'pink'
-    },
-    textIndex: {
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: 'black',
-        paddingHorizontal: 10
     },
     textLessonName: {
         fontSize: 17,
@@ -54,5 +43,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginRight: 16,
     }
-
 })
