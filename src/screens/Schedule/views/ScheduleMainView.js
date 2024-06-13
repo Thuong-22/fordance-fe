@@ -10,6 +10,7 @@ import Colors from "../../../values/colors";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SmallerLessonComponent from "../../../components/SmallerLessonComponent";
 import Search from "../../Search";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 
 const scheduleFor = "Schedule for: ";
@@ -32,8 +33,8 @@ const ScheduleMainView = (props) => {
         setDate(propDate)
     }
 
-    const handleNavDetailLesson = () => {
-        navigation.navigate('Lesson')
+    const handleNavDetailLesson = (lesson) => {
+        navigation.navigate('Lesson', {isOwner: false, lesson})
     }
 
     const handleNavSearch = () => {
@@ -56,9 +57,9 @@ const ScheduleMainView = (props) => {
             <View style={styles.scheduleContainer}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 16}}>
                     <Text style={styles.textTitle}>{scheduleFor} {date}</Text>
-                    <TouchableOpacity onPress={handleNavSearch}>
+                    {/* <TouchableOpacity onPress={handleNavSearch}>
                         <Ionicons name="add-outline" size={28} color='black'/>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
 
                 <View style={styles.lessonsContainer}>
@@ -69,7 +70,8 @@ const ScheduleMainView = (props) => {
                                 <SmallerLessonComponent
                                 lesson={item}
                                 index={index+1}
-                                handleNav={() => handleNavDetailLesson()}
+                                isOwner={false}
+                                handleNav={() => handleNavDetailLesson(item)}
                                 />
                                 <TouchableOpacity>
                                     <Text>{myDelete}</Text>

@@ -23,8 +23,8 @@ const ProgramMainView = (props) => {
 
     // console.log("PROGRAM IN DETAIL SCREEN: ", program);
 
-    const handleNavDetailLesson = () => {
-        navigation.navigate('Lesson')
+    const handleNavDetailLesson = (lesson) => {
+        navigation.navigate('Lesson', {isOwner: false, lesson})
     } 
 
     const [content, setContent] = useState("Overview"); // State để xác định nội dung hiện tại
@@ -39,7 +39,7 @@ const ProgramMainView = (props) => {
             <View style={styles.videoContainer}>
                 <ImageBackground 
                     style={styles.video}
-                    source={{uri: program.image}}
+                    source={{uri: program.image_link}}
                 >
                 </ImageBackground>
             </View>
@@ -53,8 +53,8 @@ const ProgramMainView = (props) => {
                             <View style={styles.instructorContainer}>
                                 <Text style={styles.titileOverviewText}>{aboutInstructor}</Text>
                                 <View>
-                                    <Text style={styles.textInstructor}>{program.instructor}</Text>
-                                    <Image source={{uri: program.instructorImage}} style={styles.imageInstructor}/>
+                                    <Text style={styles.textInstructor}>{program.instructor.name}</Text>
+                                    <Image source={{uri: program.instructor.image_link}} style={styles.imageInstructor}/>
                                 </View>
                                 <View>
                                     <Text style={styles.textInstructor}>{experience}</Text>
@@ -101,7 +101,8 @@ const ProgramMainView = (props) => {
                                     <SmallerLessonComponent
                                     lesson={item}
                                     index={index+1}
-                                    handleNav={() => handleNavDetailLesson()}
+                                    isOwner={false}
+                                    handleNav={() => handleNavDetailLesson(item)}
                                 />
                                 </View>
                             }
@@ -124,11 +125,13 @@ const styles = StyleSheet.create({
     },
     backButton: {
         position: 'absolute',
-        top: 10,
-        left: 10,
+        top: 16,
+        left: 16,
         zIndex: 999,
         padding: 10,
         borderRadius: 5,
+        backgroundColor: 'white',
+        borderRadius: 50,
     },
     videoContainer: {
         paddingHorizontal: 0,

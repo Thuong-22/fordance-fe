@@ -18,46 +18,44 @@ const DownloadView = (props) => {
     //DATA
     const lessons = [
         {
-            lessonName: 'How to do plete',
-            totalTime: '1:15',
-            lessonImage: 'https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg',
-            lesonsVideo: ' ',
+            name: 'How to do plete',
+            level: "INMEDIATE",
+            category: "Ballet",
+            instructor: "ABC",
+            instructorImage: "https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg",
+            total_time: '1:15',
+            image_link: 'https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg',
+            video_link: ' ',
         },
         {
-            lessonName: 'How to do catfish',
-            totalTime: '1:15',
-            lessonImage: 'https://bizweb.dktcdn.net/thumb/grande/100/356/785/articles/e5.jpg?v=1592195836593',
-            lesonsVideo: ' ',
+            name: 'How to do catfish',
+            level: "INMEDIATE",
+            category: "Ballet",
+            instructor: "ABC",
+            instructorImage: "https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg",
+            total_time: '1:15',
+            image_link: 'https://bizweb.dktcdn.net/thumb/grande/100/356/785/articles/e5.jpg?v=1592195836593',
+            video_link: ' ',
         },
         {
-            lessonName: 'How to do plete',
-            totalTime: '1:15',
-            lessonImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHHdZ2dMu6iPlTO62u0iwyL-gXlEO1pyBQToaodjY5izWyDcI8ohCh3SVJBzCzb8-aUio&usqp=CAU',
-            lesonsVideo: ' ',
+            name: 'How to do plete',
+            level: "INMEDIATE",
+            category: "Ballet",
+            instructor: "ABC",
+            instructorImage: "https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg",
+            total_time: '1:15',
+            image_link: 'https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg',
+            video_link: ' ',
         },
         {
-            lessonName: 'How to do catfish',
-            totalTime: '1:15',
-            lessonImage: 'https://bizweb.dktcdn.net/thumb/grande/100/356/785/articles/e5.jpg?v=1592195836593',
-            lesonsVideo: ' ',
-        },
-        {
-            lessonName: 'How to do plete',
-            totalTime: '1:15',
-            lessonImage: 'https://media.istockphoto.com/id/1272937508/vi/anh/ballerina-dancing-with-silk-fabric-modern-ballet-dancer-in-fluttering-waving-cloth-pointe-shoes.jpg?s=612x612&w=0&k=20&c=YzCYit-TSpIQdrjJZhbWkgipgHzNUspeWI-xYrnrCHU=',
-            lesonsVideo: ' ',
-        },
-        {
-            lessonName: 'How to do plete',
-            totalTime: '1:15',
-            lessonImage: 'https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg',
-            lesonsVideo: ' ',
-        },
-        {
-            lessonName: 'How to do catfish',
-            totalTime: '1:15',
-            lessonImage: 'https://bizweb.dktcdn.net/thumb/grande/100/356/785/articles/e5.jpg?v=1592195836593',
-            lesonsVideo: ' ',
+            name: 'How to do catfish',
+            level: "INMEDIATE",
+            category: "Ballet",
+            instructor: "ABC",
+            instructorImage: "https://www.giasutainangtre.vn/gstnt/uploaddata/images/ballet%20cho%20nguoi%20lon.jpg",
+            total_time: '1:15',
+            image_link: 'https://bizweb.dktcdn.net/thumb/grande/100/356/785/articles/e5.jpg?v=1592195836593',
+            video_link: ' ',
         },
     ]
 
@@ -68,7 +66,7 @@ const DownloadView = (props) => {
     // Function to handle the action when the "..." is pressed
     const handleMoreOptions = (lesson) => {
         // Add your logic here
-        console.log("More options pressed for lesson:", lesson.lessonName);
+        console.log("More options pressed for lesson:", lesson.name);
         setSelectedLesson(lesson);
         setShowDeleteConfirmation(true);
     };
@@ -76,13 +74,17 @@ const DownloadView = (props) => {
     // Function to delete the selected lesson
     const handleDeleteLesson = () => {
         // Add logic to delete the lesson here
-        console.log("Deleting lesson:", selectedLesson.lessonName);
+        console.log("Deleting lesson:", selectedLesson.name);
         setShowDeleteConfirmation(false);
     };
 
     const handleCloseModal = () => {
         setShowDeleteConfirmation(false);
     };
+
+    const handleNavDetailLesson = (lesson) => {
+        navigation.navigate('Lesson', {isOwner: false, lesson})
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -101,7 +103,7 @@ const DownloadView = (props) => {
                                 <SmallerLessonComponent
                                     lesson={item}
 
-                                // handleNav={() => handleNavDetailLesson()}
+                                    handleNav={() => handleNavDetailLesson(item)}
                                 />
                                 <TouchableOpacity style={styles.deleteButton} onPress={() => handleMoreOptions(item)}>
                                     <Ionicons name="ellipsis-vertical" size={20} color="black" />

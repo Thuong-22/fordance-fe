@@ -24,6 +24,7 @@ const imgWidth = width * 0.8;
 
 
 const HomeMainView = (props) => {
+
     const {
         dispatch,
         navigation,
@@ -50,9 +51,13 @@ const HomeMainView = (props) => {
     };
 
     const handleNavDetailLesson = (lesson) => {
-        navigation.navigate('Lesson', { lesson });
+        navigation.navigate('Lesson', { lesson, isOwner: false });
     }
-
+      
+    const handleOpenSearch = () => {
+        navigation.navigate('Search');
+    }
+    
     const handleNavDetailProgram = (
         programData
     ) => {
@@ -69,7 +74,7 @@ const HomeMainView = (props) => {
 
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.searchContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleOpenSearch}>
                         <Ionicons name="search-outline" size={24} color='black' />
 
                     </TouchableOpacity>
@@ -92,7 +97,7 @@ const HomeMainView = (props) => {
                 </View>
 
                 {/* LESSON CỤM 2 */}
-                <View style={styles.todayLessonsContainer}>
+                {/* <View style={styles.todayLessonsContainer}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: 16, paddingRight: 16 }}>
                         <Text style={styles.textTitle}>{todayLesson}</Text>
                         <TouchableOpacity>
@@ -107,14 +112,14 @@ const HomeMainView = (props) => {
                                 <View style={{ width: imgWidth, marginRight: 8 }}>
                                     <Lesson2Component
                                         lessons={item}
-                                        handleNav={handleNavDetailLesson}
+                                        handleNav={() => handleNavDetailLesson(item)}
                                     />
                                 </View>}
                             horizontal
                             showsHorizontalScrollIndicator={false}
                         />
                     </View>
-                </View>
+                </View> */}
 
                 {/* LESSON CỤM 3 */}
                 <View style={styles.todayLessonsContainer}>
@@ -132,7 +137,7 @@ const HomeMainView = (props) => {
                                 <View style={{ width: imgWidth, marginRight: 8 }}>
                                     <Lesson2Component
                                         lessons={item}
-                                        handleNav={handleNavDetailLesson}
+                                        handleNav={() => handleNavDetailLesson(item)}
                                     />
                                 </View>}
                             horizontal
@@ -160,8 +165,8 @@ const HomeMainView = (props) => {
                     </View>
                 </View>
 
-                {/* SAVE LESSON */}
-                <View>
+                {/* FAV LESSONS */}
+                <View style={styles.todayLessonsContainer}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: 16, paddingRight: 16 }}>
                         <Text style={styles.textTitle}>{saveLesson}</Text>
                         <TouchableOpacity>
@@ -173,22 +178,21 @@ const HomeMainView = (props) => {
                         <FlatList
                             data={saveLessons}
                             renderItem={({ item, index }) =>
-                                <View style={{ marginBottom: 24, width: imgWidth }}>
+                                <View style={{ width: imgWidth, marginRight: 8,  marginBottom: 24 }}>
                                     <Lesson2Component
                                         lessons={item}
-                                        handleNav={handleNavDetailLesson}
-                                    /></View>}
+                                        handleNav={() => handleNavDetailLesson(item)}
+                                    />
+                                </View>}
                             horizontal
                             showsHorizontalScrollIndicator={false}
                         />
                     </View>
                 </View>
-
             </ScrollView>
         </SafeAreaView>
     )
 }
-
 export default HomeMainView;
 
 const styles = StyleSheet.create({
