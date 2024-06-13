@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet, TouchableOpacity, FlatList, Button, Image, Modal, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 
 import Colors from "../../../values/colors"
@@ -11,7 +12,6 @@ import VideoPlayer2 from "../../../components/VideoPlayer2";
 import PopUpFormComponent from "../../../components/PopUpFormComponent";
 import InstructorLessontab from "../components/InstructorLessonTab";
 import ParticipantsItem from "../components/ParticipantItem";
-import ScheduleLessonComponent from "../../../components/ScheduleLessonComponent";
 
 const LessonMainView = (props) => {
     const {
@@ -27,19 +27,21 @@ const LessonMainView = (props) => {
     const offlineLesson = {
         title: "Introduction to React Native",
         instructor: "John Doe",
-        instructorEmail: "test@gmail.com",
-        instructorPhone: "088815454545",
         location: "123 Main Street, Cityville",
+        time: "10:00 - 12:00",
         startDate: "20/04/2024",
-        endDate: "25/04/2024",
+        endDate: "25/04/20240",
     };
     const Username = "Username";
     const UserImageURL = "https://sab.org/wp-content/uploads/2020/04/190508_sab_5222-scaled-e1588882431127.jpg"
 
+    const [selectedDate, setSelectedDate] = useState(new Date());
+
     const [content, setContent] = useState("Community"); // State để xác định nội dung hiện tại
     const [isShowVideo, setIsShowVideo] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [modalScheduleVisible, setModalScheduleVisible] = useState(false);
+    const [isModalOfflineVisible, setModalOfflineVisible] = useState(false);
+    const [isModalScheduleVisible, setIsModalScheduleVisible] = useState(false);
+
 
     const handleNavigateCommunityDetail = () => {
         navigation.navigate('Community');
@@ -49,6 +51,13 @@ const LessonMainView = (props) => {
         // console.log("NAV TO VIDEO PLAYER");
 
         setIsShowVideo(true);
+    }
+
+    const onChangeDate2 = (event, selectedDate) => {
+        if (event.type === 'set') {
+            setSelectedDate(selectedDate);
+            setIsModalScheduleVisible(false);
+        }
     }
 
     const handleSubmit = () => {
@@ -65,22 +74,20 @@ const LessonMainView = (props) => {
             </TouchableOpacity>
 
             <View style={styles.videoContainer}>
-                {/* <View style={styles.video}>
-                </View> */}
                 <Image style={styles.video} source={{ uri: lesson.image_link }} />
                 <TouchableOpacity onPress={handleNavVideoPlayer}>
                     <VideoPlayer2
                         uri={'https://s3.ap-southeast-2.amazonaws.com/fordance.com/videos/1000049593.mp4'}
                         visible={isShowVideo}
-                        setVisible={setIsShowVideo} />
-                    <Text>PLAY</Text>
+                        setVisible={setIsShowVideo} 
+                    />
                 </TouchableOpacity>
             </View>
 
             {isOwner ? (
                 // Instructor chỉ có 1 icon tạo lịch offline thôi, Khoa bỏ Modal set offline cho instructor vào đây
                 <View style={styles.iconContainer}>
-                    <TouchableOpacity style={[styles.icon, { marginLeft: 16 }]} onPress={() => (setModalVisible(true))}>
+                    <TouchableOpacity style={[styles.icon, {marginLeft:16}]} onPress={() => (setModalOfflineVisible(true))}>
                         <FontAwesomeIcon icon={faAddressBook} size={25} color={Colors.primaryPupple} />
                     </TouchableOpacity>
                 </View>
@@ -93,10 +100,12 @@ const LessonMainView = (props) => {
                     <TouchableOpacity style={styles.icon}>
                         <Ionicons name="cloud-download-outline" size={30} color={Colors.primaryPupple} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.icon} onPress={() => (setModalScheduleVisible(true))}>
+                    <TouchableOpacity style={styles.icon} 
+                        onPress={() => (setIsModalScheduleVisible(true))}
+                    >
                         <Ionicons name="calendar-clear-outline" size={30} color={Colors.primaryPupple} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.icon} onPress={() => (setModalVisible(true))}>
+                    <TouchableOpacity style={styles.icon} onPress={() => (setModalOfflineVisible(true))}>
                         <FontAwesomeIcon icon={faAddressBook} size={25} color={Colors.primaryPupple} />
                     </TouchableOpacity>
                     {/* <TouchableOpacity style={styles.icon}>
@@ -107,15 +116,15 @@ const LessonMainView = (props) => {
 
             <View style={styles.container2}>
                 <Text style={styles.textName}>{lesson.name}</Text>
-
-                {!isOwner &&
-                    <View style={styles.instructorContainer}>
-                        <Image source={{ uri: lesson.instructorImage }} style={styles.circle}></Image>
-                        <View style={styles.instructorInfo}>
-                            <Text style={styles.textName}>{lesson.instructor}</Text>
-                            {/* <Text style={styles.instructorSubtitle}>{DancerName}</Text> */}
-                        </View>
-                    </View>}
+                
+                {!isOwner && 
+                <View style={styles.instructorContainer}>
+                    <Image source={{ uri: lesson.instructorImage }} style={styles.circle}></Image>
+                    <View style={styles.instructorInfo}>
+                        <Text style={styles.textName}>{lesson.instructor}</Text>
+                        {/* <Text style={styles.instructorSubtitle}>{DancerName}</Text> */}
+                    </View>
+                </View>}
             </View>
 
             <View style={styles.infoContainer}>
@@ -145,14 +154,14 @@ const LessonMainView = (props) => {
                 <View>
                     <InstructorLessontab onButtonPress={setContent} />
                     {content === 'Community' && (
-                        <View style={{ paddingHorizontal: 16, height: 320 }}>
+                        <View style={{paddingHorizontal: 16, height: 320}}>
                             <View style={styles.header}>
                                 <Text style={styles.headerText}>Community</Text>
                                 <TouchableOpacity onPress={handleNavigateCommunityDetail}>
                                     <Text style={styles.joinHere}>Join Here</Text>
                                 </TouchableOpacity>
                             </View>
-                            <CommunityComponent comments={comments} />
+                            <CommunityComponent comments={comments}/>
                         </View>
                     )}
                     {content === "Participants" && (
@@ -160,10 +169,10 @@ const LessonMainView = (props) => {
                             <Text style={styles.headerText}>Participants</Text>
                             <View style={styles.participantContent}>
                                 {console.log("PARTICIPANTS: ", participants)}
-                                <FlatList
+                                <FlatList 
                                     data={participants}
-                                    renderItem={({ item, index }) => (
-                                        <ParticipantsItem
+                                    renderItem={({item, index}) => (
+                                        <ParticipantsItem 
                                             key={index}
                                             image_link={item.image_link}
                                             name={item.name}
@@ -194,19 +203,23 @@ const LessonMainView = (props) => {
             </TouchableOpacity>
 
             <Modal
-                visible={modalVisible}
+                visible={isModalOfflineVisible}
                 animationType="fade"
                 transparent={true}
             >
-                <PopUpFormComponent handleSubmit={handleSubmit} offlinelessons={offlineLesson} handleCloseModal={() => { setModalVisible(false) }} />
+                <PopUpFormComponent handleSubmit={handleSubmit} offlinelessons={offlineLesson} handleCloseModal={() => { setModalOfflineVisible(false) }} />
             </Modal>
-            <Modal
-                visible={modalScheduleVisible}
-                animationType="fade"
-                transparent={true}
-            >
-                <ScheduleLessonComponent handleSubmit={handleSubmit} offlinelessons={offlineLesson} handleCloseModal={() => { setModalScheduleVisible(false) }} />
+
+            <Modal visible={isModalScheduleVisible}>
+                <DateTimePicker 
+                    testID='selectDatePicker'
+                    value={selectedDate}
+                    mode='date'
+                    display='calendar'
+                    onChange={(event, selectedDate) => onChangeDate2(event, selectedDate)}
+                />
             </Modal>
+            
         </SafeAreaView>
 
     )
@@ -368,6 +381,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
         letterSpacing: 2
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        height: 500,
     },
 })
 
